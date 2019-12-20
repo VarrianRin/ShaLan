@@ -1,0 +1,257 @@
+
+DEC [apelsin]
+PUSH 150
+POP [apelsin]
+
+
+DEC [blin]
+PUSH 120
+POP [blin]
+
+
+DEC [colbasa]
+PUSH 0
+POP [colbasa]
+
+
+DEC [doner]
+PUSH 150
+POP [doner]
+
+
+DEC [obed]
+PUSH 200
+POP [obed]
+
+
+DEC [ujin]
+PUSH 200
+POP [ujin]
+
+
+DEC [deneg]
+PUSH 0
+POP [deneg]
+
+
+DEC [INF]
+PUSH 3
+POP [INF]
+
+CALL $main
+$Komplex:
+PUSH [apelsin]
+
+PUSH 0
+
+JE if_0
+PUSH [blin]
+PUSH [blin]
+
+MUL
+PUSH 4
+PUSH [colbasa]
+
+MUL
+PUSH [apelsin]
+
+MUL
+
+SUB
+POP [doner]
+PUSH [doner]
+
+PUSH 0
+
+JB if_1
+PUSH [doner]
+
+SQRT
+POP [doner]
+PUSH [doner]
+PUSH [blin]
+
+SUB
+PUSH 2
+PUSH [apelsin]
+
+MUL
+
+DIV
+POP [obed]
+PUSH [doner]
+PUSH [blin]
+
+ADD
+PUSH 2
+PUSH [apelsin]
+
+MUL
+
+DIV
+PUSH -1
+
+MUL
+POP [ujin]
+PUSH 2
+
+POP [ax]
+RET
+
+if_1:
+POP
+POP
+PUSH [doner]
+
+PUSH 0
+
+JNE if_2
+PUSH [blin]
+PUSH 2
+PUSH [apelsin]
+
+MUL
+
+DIV
+PUSH -1
+
+MUL
+POP [obed]
+PUSH 1
+
+POP [ax]
+RET
+
+if_2:
+POP
+POP
+PUSH [doner]
+
+PUSH 0
+
+JAE if_3
+PUSH 0
+
+POP [ax]
+RET
+
+if_3:
+POP
+POP
+if_0:
+POP
+POP
+PUSH [blin]
+
+PUSH 0
+
+JE if_4
+PUSH [colbasa]
+PUSH [blin]
+
+DIV
+PUSH -1
+
+MUL
+POP [obed]
+PUSH 1
+
+POP [ax]
+RET
+
+if_4:
+POP
+POP
+PUSH [colbasa]
+
+PUSH 0
+
+JNE if_5
+PUSH 1000
+POP [obed]
+PUSH [INF]
+
+POP [ax]
+RET
+
+if_5:
+POP
+POP
+PUSH [colbasa]
+
+PUSH 0
+
+JE if_6
+PUSH 0
+
+POP [ax]
+RET
+
+if_6:
+POP
+POP
+
+$main:
+IN
+POP [apelsin]
+IN
+POP [blin]
+IN
+POP [colbasa]
+
+CALL $Komplex
+PUSH [ax]
+POP [deneg]
+PUSH [deneg]
+
+PUSH 2
+
+JNE if_7
+PUSH [obed]
+
+OUT
+PUSH [ujin]
+
+OUT
+
+END
+if_7:
+POP
+POP
+PUSH [deneg]
+
+PUSH 1
+
+JNE if_8
+PUSH [obed]
+
+OUT
+
+END
+if_8:
+POP
+POP
+PUSH [deneg]
+
+PUSH 0
+
+JNE if_9
+
+END
+if_9:
+POP
+POP
+PUSH [deneg]
+
+PUSH [INF]
+
+JNE if_10
+PUSH [obed]
+
+OUT
+
+END
+if_10:
+POP
+POP
+
